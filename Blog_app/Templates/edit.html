@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa; 
+        }
+
+        .navbar {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: #2C3E50;
+            color: white;
+            padding: 0 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #1c5ffa;
+            transform: scale(1.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 150px;
+            color: grey;
+            animation: fadeInDown 3s forwards; 
+        }
+
+        form {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #e0f7fa; 
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: bounceIn 1.5s forwards; 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: grey;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            background-color: #4285f4; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1c5ffa;
+        }
+
+        @keyframes bounceIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}" class="navbar-link">Home</a>
+        <a href="{{ url_for('index1') }}" class="navbar-link">Upload Blog</a>
+        <p class="navbar-link"><a href="{{ url_for('contact') }}">Contact</a></p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" action="{{ url_for('saveEdits', blog_id=blog[0]) }}">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="{{ blog[1] }}">
+        </div>
+        <div>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content">{{ blog[2] }}</textarea>
+        </div>
+        <div>
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image">
+        </div>
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>  
+</body>
+</html>

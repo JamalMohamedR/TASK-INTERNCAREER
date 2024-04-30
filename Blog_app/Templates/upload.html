@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQSQUAD</title>
+    <link rel="icon" href="🧊" type="image/x-icon"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #2C3E50;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #1c5ffa;
+            transform: scale(1.1);
+        }
+
+        .container {
+            margin-top: 100px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        .blog-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background-color: #b3e5fc; 
+        }
+
+        .blog-item:nth-child(odd) {
+            background-color: #81d4fa; 
+        }
+
+        .blog-item:nth-child(even) {
+            background-color: #4fc3f7; 
+        }
+
+        .blog-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-item-content {
+            flex: 1;
+            margin-left: 20px;
+            word-wrap: break-word; 
+        }
+
+        .blog-item h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #2C3E50;
+        }
+
+        .blog-item p {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .blog-item img {
+            width: 300px;
+            height: 225px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+
+        .cube-emoji {
+            display: inline-block;
+            animation: spin 3s infinite linear;
+        }
+
+        .edit-btn, .delete-btn {
+            padding: 8px 16px;
+            margin-left: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .edit-btn {
+            background-color:black;
+        }
+
+        .delete-btn {
+            background-color:black;
+        }
+
+        .edit-btn:hover, .delete-btn:hover {
+            opacity: 0.8;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="{{ url_for('index') }}" class="navbar-link">Home</a>
+    <a href="{{ url_for('index1') }}" class="navbar-link">Upload Blog</a>
+    <p class="navbar-link"><a href="{{ url_for('contact') }}">Contact</a></p>
+</div>
+
+<div class="container">
+    <h1>Welcome to <span class="cube-emoji">🧊</span> Squad</h1>
+    <h2>Uploaded Blogs</h2>
+    <div id="blogs">
+        {% for blog in blogs %}
+        <div class="blog-item">
+            {% if blog[3] %}
+            <img src="{{ blog[3] }}" alt="{{ blog[1] }}">
+            {% endif %}
+            <div class="blog-item-content">
+                <h3>{{ blog[1] }}</h3>
+                <p>{{ blog[2] }}</p>
+    
+                <a href="{{ url_for('edit', blog=[blog]) }}" class="edit-btn">📝</a>
+        
+                <a href="{{ url_for('delete_blog', blog_id=blog[0]) }}" class="delete-btn">🗑️</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

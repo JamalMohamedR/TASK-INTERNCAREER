@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploaded Blogs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@600&family=Noto+Sans+JP:wght@100..900&family=Poppins:wght@500&family=Protest+Revolution&family=Stylish&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa; 
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #2C3E50;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #1c5ffa;
+            transform: scale(1.1);
+        }
+
+        .container {
+            margin-top: 150px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h3 {
+            color: black;
+            font-size: 42px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+            animation: slideIn 1s ease;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h4 {
+            color: black;
+            font-size: 22px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group label {
+            font-size: 20px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            padding: 12px;
+            border-radius: 25px;
+            border: 1px solid black;
+            width: 300px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .form-group input[type="submit"] {
+            padding: 12px 20px;
+            background-color: #1c5ffa;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #1448b4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="{{ url_for('index') }}" class="navbar-link">Home</a>
+    <a href="{{ url_for('index1') }}" class="navbar-link">Upload Blog</a>
+    <p class="navbar-link"><a href="{{ url_for('contact') }}">Contact</a></p>
+</div>
+
+<div class="container">
+    <h3 style="font-size: 52px;">Contact Us</h3>
+    <!-- <form action="/save" class="forms" method="post"> -->
+    <div class="forms">
+        <div class="form-group">
+            <h4>Name:</h4>
+            <input id="personName" name="personName" type="text">
+        </div>
+        <div class="form-group">
+            <h4>Email:</h4>
+            <input id="email" name="email" type="email">
+        </div>
+        <div class="form-group">
+            <h4>Message:</h4>
+            <input id="message" name="message" type="text">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" onclick="thankyou()">
+        </div>
+    </div>
+</div>
+
+<script>
+    function thankyou(){
+        window.location.replace(window.location.origin+"/thankyou");
+    }
+</script>
+
+
+
+</body>
+</html>
